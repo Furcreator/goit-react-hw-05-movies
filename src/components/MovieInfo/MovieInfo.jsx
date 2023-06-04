@@ -1,13 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import { getMovieById } from 'utils/api';
 
 const MovieInfo = ({ moviesId }) => {
-  const [movieByID, setMovieByID] = useState(null);
+  const [movieById, setMovieById] = useState(null);
+  const location = useLocation();
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
-    getMovieById(moviesId).then(movie => setMovieByID(movie));
+    getMovieById(moviesId).then(movie => setMovieById(movie));
   }, [moviesId]);
-  console.log(movieByID);
-  return <>INFO</>;
+  return (
+    <>
+      <NavLink to={backLinkLocationRef.current}>Back</NavLink>
+      <div id={movieById}></div>
+    </>
+  );
 };
 export default MovieInfo;

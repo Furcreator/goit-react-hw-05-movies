@@ -15,6 +15,18 @@ export const getMovieById = async id => {
 
 export const getSearchMovie = async (value, page) => {
   const URL = `${BASE_URL}3/search/movie?query=${value}&include_adult=false&language=en-US&page=${page}&api_key=${API_KEY}`;
-    const response = await fetch(URL);
+  const response = await fetch(URL);
   return await response.json();
 };
+
+export const getCastOfMovie = async id => {
+  const URL = `${BASE_URL}3/movie/${id}/credits?language=en-US&api_key=${API_KEY}`;
+  const response = await fetch(URL);
+  return await response.json();
+};
+
+export const getReviewsOfMovie = async id => {
+    const URL = `${BASE_URL}3/movie/${id}/reviews?language=en-US&api_key=${API_KEY}&page=1`;
+      const response = await fetch(URL);
+      return await response.json();
+}

@@ -9,11 +9,11 @@ const SearchingForm = ({ onSubmitForm }) => {
   const onHandleSubmit = e => {
     e.preventDefault();
     if (query.trim() === '') {
-      console.log('pusto');
       setQuery('');
       return;
     }
     onSubmitForm(query);
+    setQuery('');
   };
   return (
     <form onSubmit={onHandleSubmit}>

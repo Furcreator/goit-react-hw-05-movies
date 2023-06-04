@@ -23,11 +23,6 @@ const Movie = () => {
     setSearchParams({ query: result });
   };
 
-  // const onHandleClick = () => {
-  //   getSearchMovie(query, page + 1);
-  //   setPage(prevPage => prevPage + 1);
-  // };
-
   return (
     <>
       <Title text={'Search Movie'} />
