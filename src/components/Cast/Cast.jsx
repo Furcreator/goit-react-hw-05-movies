@@ -1,3 +1,4 @@
+import CastList from 'components/CastList/CastList';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCastOfMovie } from 'utils/api';
@@ -11,6 +12,15 @@ const Cast = () => {
       setCast(data.cast);
     });
   }, [moviesId]);
-  return <div cast={cast}></div>;
+  return (
+    <>
+      {cast && <CastList cast={cast} />}
+      {!cast && (
+        <div>
+          <p>There is no casts</p>
+        </div>
+      )}
+    </>
+  );
 };
 export default Cast;

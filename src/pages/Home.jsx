@@ -15,15 +15,13 @@ const Home = () => {
       .catch(error => setError(error));
   }, []);
   return (
-    <>
+    <main>
       <section>
-        <>
-          {error && <p>{error}</p>}
-          <Title text="Trending Movies" />
-          {trendingMovies && <ListOfMovies movies={trendingMovies} />}
-        </>
+        {error && <p>{error}</p>}
+        <Title text="Trending Movies" />
+        {trendingMovies && <ListOfMovies movies={trendingMovies} />}
       </section>
-    </>
+    </main>
   );
 };
 export default Home;

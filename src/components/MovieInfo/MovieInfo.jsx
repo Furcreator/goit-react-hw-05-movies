@@ -1,3 +1,4 @@
+import MovieCard from 'components/MovieCard/MovieCard';
 import { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { getMovieById } from 'utils/api';
@@ -13,7 +14,7 @@ const MovieInfo = ({ moviesId }) => {
   return (
     <>
       <NavLink to={backLinkLocationRef.current}>Back</NavLink>
-      <div id={movieById}></div>
+      {movieById && <MovieCard movie={movieById}></MovieCard>}
     </>
   );
 };

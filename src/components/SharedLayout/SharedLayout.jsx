@@ -1,18 +1,20 @@
-const { Outlet, NavLink } = require('react-router-dom');
+// import Footer from 'components/Footer/Footer';
+import Header from 'components/Header/Header';
+import Loader from 'components/Loader/Loader';
+import { Suspense } from 'react';
+
+const { Outlet } = require('react-router-dom');
 
 const SharedLayout = () => {
   return (
     <>
-      <header>
-        <nav>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/movies">Movies</NavLink>
-        </nav>
-      </header>
+      <Header></Header>
       <main>
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </main>
-      <footer></footer>
+      {/* <Footer></Footer> */}
     </>
   );
 };

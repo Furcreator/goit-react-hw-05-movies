@@ -14,21 +14,27 @@ const Movie = () => {
   useEffect(() => {
     if (query) {
       getSearchMovie(query, page).then(data => {
+        if (data.results.length === 0) {
+          setSearchParams('');
+          return;
+        }
         setListMovies(data.results);
       });
     }
-  }, [query, page]);
+  }, [query, page, setSearchParams]);
 
   const onSubmitForm = result => {
     setSearchParams({ query: result });
   };
 
   return (
-    <>
-      <Title text={'Search Movie'} />
-      <SearchingForm onSubmitForm={onSubmitForm} />
-      {listMovies && <ListOfMovies movies={listMovies} />}
-    </>
+    <main>
+      <section>
+        <Title text={'Search Movie'} />
+        <SearchingForm onSubmitForm={onSubmitForm} />
+        {listMovies && <ListOfMovies movies={listMovies} />}
+      </section>
+    </main>
   );
 };
 export default Movie;
