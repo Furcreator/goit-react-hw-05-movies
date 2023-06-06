@@ -3,7 +3,12 @@ import MovieInfo from 'components/MovieInfo/MovieInfo';
 import Title from 'components/Title/Title';
 import { Suspense } from 'react';
 
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
+import {
+  MoviesDetailsContainer,
+  MoviesDetailsLinkContainer,
+} from './MoviesDetails.styled';
+import { NavLinkStyled } from 'components/Header/Header.styled';
 
 const MoviesDetails = () => {
   const { moviesId } = useParams();
@@ -11,13 +16,17 @@ const MoviesDetails = () => {
   return (
     <main>
       <section>
-        <MovieInfo moviesId={moviesId}>Information about movie</MovieInfo>
-        <Title text={'Aditional information'} />
-        <Link to="cast">Cast</Link>
-        <Link to="reviews">Reviews</Link>
-        <Suspense fallback={<Loader />}>
-          <Outlet />
-        </Suspense>
+        <MoviesDetailsContainer>
+          <MovieInfo moviesId={moviesId}>Information about movie</MovieInfo>
+          <Title text={'Aditional information'} />
+          <MoviesDetailsLinkContainer>
+            <NavLinkStyled to="cast">Cast</NavLinkStyled>
+            <NavLinkStyled to="reviews">Reviews</NavLinkStyled>
+          </MoviesDetailsLinkContainer>
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
+        </MoviesDetailsContainer>
       </section>
     </main>
   );

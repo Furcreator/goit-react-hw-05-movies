@@ -2,6 +2,7 @@ import ListOfMovies from 'components/ListOfMovies/ListOfMovies';
 import Title from 'components/Title/Title';
 import { useEffect, useState } from 'react';
 import { getTrendingMovies } from 'utils/api';
+import { HomeContainer } from './Home.styled';
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState(null);
@@ -15,13 +16,13 @@ const Home = () => {
       .catch(error => setError(error));
   }, []);
   return (
-    <main>
+    <HomeContainer>
       <section>
         {error && <p>{error}</p>}
         <Title text="Trending Movies" />
         {trendingMovies && <ListOfMovies movies={trendingMovies} />}
       </section>
-    </main>
+    </HomeContainer>
   );
 };
 export default Home;

@@ -1,30 +1,36 @@
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import noPhoto from '../../images/noPhoto.png';
+import { Img, Li, StyledNavLink, Thumb } from './ListOfMoviesItem.styled';
+import PropTypes from 'prop-types';
 const ListOfMoviesItem = ({ movie }) => {
   const location = useLocation();
   let posterPath = noPhoto;
   if (movie.poster_path) {
     posterPath = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
   }
+
   return (
-    <li>
+    <Li>
       <Link to={`/movies/${movie.id}`} state={{ from: location }}>
-        <>
-          <img src={posterPath} width={`50px`} height={`50px`} alt="preview" />
-        </>
+        <Thumb>
+          <Img src={posterPath} width={`50px`} height={`50px`} alt="preview" />
+        </Thumb>
       </Link>
       {movie.title && (
-        <NavLink to={`/movies/${movie.id}`} state={{ from: location }}>
+        <StyledNavLink to={`/movies/${movie.id}`} state={{ from: location }}>
           <span>{movie.title}</span>
-        </NavLink>
+        </StyledNavLink>
       )}
       {/* якщо назва фільму в параметрі film.name */}
       {movie.name && (
-        <NavLink to={`/movies/${movie.id}`} state={{ from: location }}>
+        <StyledNavLink to={`/movies/${movie.id}`} state={{ from: location }}>
           <span>{movie.name}</span>
-        </NavLink>
+        </StyledNavLink>
       )}
-    </li>
+    </Li>
   );
 };
 export default ListOfMoviesItem;
+ListOfMoviesItem.propType = {
+  movie: PropTypes.object.isRequired,
+};

@@ -1,11 +1,11 @@
-import { NavLink } from 'react-router-dom';
 import PageNotFoundImage from '../../images/pnd.png';
+import { ContainerNF, ImgNF, NavLinkNF } from './PageNotFound.styled';
 const PageNotFound = () => {
   return (
-    <div>
-      <img src={PageNotFoundImage} alt="searching" />
-      <NavLink to="/">Перейти на головну</NavLink>
-    </div>
+    <ContainerNF>
+      <ImgNF src={PageNotFoundImage} alt="searching" />
+      <NavLinkNF to="/">Перейти на головну</NavLinkNF>
+    </ContainerNF>
   );
 };
 

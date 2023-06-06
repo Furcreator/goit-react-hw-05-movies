@@ -1,8 +1,9 @@
 import MovieCard from 'components/MovieCard/MovieCard';
 import { useEffect, useRef, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { getMovieById } from 'utils/api';
-
+import { NavLinkStyled } from 'components/Header/Header.styled';
+import PropTypes from 'prop-types';
 const MovieInfo = ({ moviesId }) => {
   const [movieById, setMovieById] = useState(null);
   const location = useLocation();
@@ -13,9 +14,12 @@ const MovieInfo = ({ moviesId }) => {
   }, [moviesId]);
   return (
     <>
-      <NavLink to={backLinkLocationRef.current}>Back</NavLink>
+      <NavLinkStyled to={backLinkLocationRef.current}>Back</NavLinkStyled>
       {movieById && <MovieCard movie={movieById}></MovieCard>}
     </>
   );
 };
 export default MovieInfo;
+MovieInfo.propType = {
+  moviesId: PropTypes.string.isRequired
+}

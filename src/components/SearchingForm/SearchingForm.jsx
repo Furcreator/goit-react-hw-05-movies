@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { HiSearch } from 'react-icons/hi';
+import { Button, Input, SearchContainer } from './SearchingForm.styled';
+import PropTypes from 'prop-types';
 
 const SearchingForm = ({ onSubmitForm }) => {
   const [query, setQuery] = useState('');
@@ -17,18 +20,24 @@ const SearchingForm = ({ onSubmitForm }) => {
   };
   return (
     <form onSubmit={onHandleSubmit}>
-      <button type="submit">
-        <span>Search</span>
-      </button>
-      <input
-        type="text"
-        autoComplete="off"
-        autoFocus
-        placeholder="Search movies"
-        value={query}
-        onChange={onHandleChange}
-      />
+      <SearchContainer>
+        <Input
+          type="text"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search movies"
+          value={query}
+          onChange={onHandleChange}
+        />
+        <Button type="submit">
+          <HiSearch fontSize="15px" />
+        </Button>
+      </SearchContainer>
     </form>
   );
 };
 export default SearchingForm;
+
+SearchingForm.propTypes = {
+  onSubmitForm: PropTypes.func.isRequired,
+};

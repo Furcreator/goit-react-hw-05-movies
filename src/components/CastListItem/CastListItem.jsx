@@ -1,4 +1,11 @@
+import { MovieImg } from 'components/MovieCard/MovieCard.styled';
 import noActorPhoto from '../../images/noActor.jpeg';
+import {
+  CastListItemContainer,
+  CastListItemText,
+  Span,
+} from './CastListItem.styled';
+import PropTypes from 'prop-types';
 
 const CastListItem = ({ cast }) => {
   let actorPhoto = noActorPhoto;
@@ -8,12 +15,20 @@ const CastListItem = ({ cast }) => {
 
   return (
     <li>
-      <div>
-        <img src={actorPhoto} alt="actor-img"></img>
-        <p>Name: {cast.name}</p>
-        <p>Role: {cast.character}</p>
-      </div>
+      <CastListItemContainer>
+        <MovieImg src={actorPhoto} alt="actor-img"></MovieImg>
+
+        <CastListItemText>
+          <Span>Name:</Span> {cast.name}
+        </CastListItemText>
+        <CastListItemText>
+          <Span>Role:</Span> {cast.character}
+        </CastListItemText>
+      </CastListItemContainer>
     </li>
   );
 };
 export default CastListItem;
+CastListItem.propType = {
+  cast: PropTypes.object.isRequired,
+};

@@ -1,5 +1,11 @@
 import noPoster from '../../images/noPhoto.png';
-
+import {
+  MovieCardContainer,
+  MovieImg,
+  MovieMediumTitle,
+  MovieTitle,
+} from './MovieCard.styled';
+import PropTypes from 'prop-types';
 const MovieCard = ({ movie }) => {
   const { genres, overview, original_title, vote_average, poster_path } = movie;
   const score = Math.round(vote_average * 10);
@@ -10,17 +16,20 @@ const MovieCard = ({ movie }) => {
   }
 
   return (
-    <div>
-      <img src={posterPath} alt="poster-film" />
+    <MovieCardContainer>
+      <MovieImg src={posterPath} alt="poster-film" />
       <div>
-        <h1>Title: {original_title}</h1>
+        <MovieTitle>{original_title}</MovieTitle>
         <p>User Score: {score}% </p>
-        <h2>Overview</h2>
+        <MovieMediumTitle>Overview</MovieMediumTitle>
         <p>{overview}</p>
-        <h2>Genres</h2>
+        <MovieMediumTitle>Genres</MovieMediumTitle>
         <p>{genresOfMovie.join(', ')}</p>
       </div>
-    </div>
+    </MovieCardContainer>
   );
 };
 export default MovieCard;
+MovieCard.propTypes = {
+  movie: PropTypes.object.isRequired,
+}
